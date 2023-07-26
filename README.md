@@ -74,7 +74,7 @@ Tamplates-
 
 ...
 ### Dependencies
-Created using python version
+Created using python version Python 3.10.9
 ```python
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
