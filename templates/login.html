@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}login{% endblock %}
+{% block styles %}<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/login.css') }}">
+{% endblock %}
+{% block content %}
+<!-- This login page allows the admin to login before being re-directed to the protected upload page -->
+<div class="login__container">
+    <!-- if the login deatails are correct, infromation is stored in session, else error message is shown -->
+    {% if messsage %}
+        <p>{{ messsage }}</p>
+    {% endif %}
+  <form method="POST" action="{{ url_for('login') }}">
+    <input type="text" name="username" placeholder="Username" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <br><br><input type="submit" value="Login">
+  </form>
+</div>
+
+<!-- Navigation to password protected pages -->
+<div class="admin__navigation">
+  <a href="{{ url_for('protected') }}">
+    <button class="btn btn-primary">Upload</button>
+  </a>
+  <a href="{{ url_for('database_management') }}">
+    <button class="btn btn-primary">Database</button>
+  </a>
+</div>
+{% endblock %}

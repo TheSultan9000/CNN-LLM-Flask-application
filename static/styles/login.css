@@ -1,0 +1,11 @@
+.login__container{
+    padding: 25px;
+}
+
+.admin__navigation{
+    padding: 25px;
+}
+
+a {
+    text-decoration:none !important;
+    }

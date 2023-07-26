@@ -1,0 +1,54 @@
+<!-- This page is only accessible if the admin has logged in during the session (login.html)-->
+{% extends "base.html" %}
+{% block title %}Cytetracker_upload{% endblock %}
+{% block styles %}
+<!-- Uses the same styling as the upload.html template -->
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/upload.css') }}">
+{% endblock %}
+{% block content %}
+<!-- Upload form accepts images only -->
+<form id="form__upload" method="POST" enctype="multipart/form-data">
+    <input type="file" id="input__upload" name="image" accept="image/*">
+    <br><br><input type="submit" id="button__upload" value="Upload">
+    <p>The models:</p>
+    <p>CNN: has been trained on images of the English countryside and will output 'Animal', 'building', and 'Nature' (Precision: 1, Recall: 0.9, Accuracy: 0.6)</p>
+    <a href="https://huggingface.co/nlpconnect/vit-gpt2-image-captioning">
+        <p>LLM: https://huggingface.co/nlpconnect/vit-gpt2-image-captioning</p>
+    </a>
+</form>
+
+<div id="uploaded__content">
+    <h1>Uploaded Image:</h1>
+    <img id="uploaded__image">
+    <div id="loading__image">
+        <!-- HTML for loading roller taken from  https://loading.io/css/ -->
+        <!-- Display is set to flex only when Flask function is running -->
+        <div class="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <p id="result__tag"></p>
+    <p id="result__description"></p>
+</div>
+
+<!-- Submit form -->
+<form method="POST" id="form__submit">
+    <p>Tags:</p>
+    <input id='input__tag' , placeholder="Tag, Tag">
+    <br><br>
+    <p>Description:</p>
+    <textarea rows="3" cols="30" id="input__description" placeholder="Description"></textarea>
+    <br><br><input type="submit" id="button__submit" value="Submit">
+</form>
+
+<script src="{{url_for ('static', filename='styles/info_extraction.js')}}"></script>
+<script src="{{url_for ('static', filename='styles/image_uploader.js')}}"></script>
+<script src="{{url_for ('static', filename='styles/submit_button.js')}}"></script>
+{% endblock %}

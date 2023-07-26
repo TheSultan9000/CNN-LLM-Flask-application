@@ -1,0 +1,146 @@
+/* This is to ensure all images stay within the width of the screen */
+img{
+    max-width: 100%;
+}
+
+/* Portfolio images */
+.portfolio{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-gap: 1em;
+    padding: 2em;
+}
+
+/* Width and height are set to 100% so that all images fills the entire space,
+removing empty spaces between images of differnt sizes */
+.portfolio__item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Lightbox */
+.portfolio-lightbox{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Scale is set to 0,0 so that lightbox images are not visible before target */
+    transform: scale(0,0);
+    /* Delay added to give an effect to the lightbox images when targeted */
+    transition: transform ease-in-out 150ms;
+}
+
+.portfolio-lightbox:target{
+    /* On target, light box images becomes visible with a scale of 1,1 */
+    transform: scale(1,1);
+}
+
+/* Lightbox images with scale with the width of the screen untill 800px where it will remain at 800px */
+@media (max-width: 799px){
+    .portfolio-lightbox__content{
+        width: 800px;
+        height: auto;
+        background: black;
+        padding: 1em;
+        position: relative;
+    }
+}
+    
+@media (min-width: 800px){
+    .portfolio-lightbox__content{
+        max-width: 800px;
+        max-height: auto;
+        background: black;
+        padding: 1em;
+        position: relative;
+    }
+}
+
+.portfolio-lightbox__content{
+    max-width: 800px;
+    max-height: auto;
+    width: 75%;
+    background: black;
+    padding: 1em;
+    position: relative;
+}
+
+/* Close button */
+.close{
+    position: absolute;
+    width: 0.5em;
+    height: 0.5em;
+    background: white;
+    top: -0em;
+    right: -0em;
+    border-radius: 50%;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close::after{
+    content: 'X';
+    color:  black;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+
+
+
+/* Filter button style for future app iteration */
+
+/* .filter_button:focus,.filter_button:active {
+    outline: none !important;
+    box-shadow: none !important;
+ }
+
+@media (max-width: 599px){
+    #filter_button_container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+    
+@media (min-width: 600px){
+    #filter_button_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.filter_button{
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: #f7fff5;
+    border: none;
+    color: black;
+    text-align: center;
+    font-size: 18px;
+    width: 150px;
+    text-decoration: none;
+}
+
+.filter_button::before{
+    content: "[ ";
+}
+
+.filter_button::after{
+    content: " ]";
+}
+
+.filter_button:hover{
+    color: #34A56F;
+} */

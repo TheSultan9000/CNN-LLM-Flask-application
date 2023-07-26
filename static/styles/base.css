@@ -1,0 +1,59 @@
+/* !important to override bootstrap style */
+head {
+    background-color: #f7fff5 !important;
+}
+body {
+    background-color: #f7fff5 !important;
+}
+
+/* Navigation buttons */
+.navigation__container {
+    max-width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.navigation{
+    padding-bottom: 25px;
+    background-color: #f7fff5;
+    border: none;
+    color: black;
+    text-align: center;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+/* !important to override bootstrap style */
+.navigation:focus,.navigation:active {
+    outline: none !important;
+    box-shadow: none !important;
+ }
+
+.navigation:hover{
+    color: #34A56F;
+}
+
+/* Logo */
+.logo__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Logo will scale with the size of the screen untill 600px where it will remain at 600px */
+@media (max-width: 599px){
+    .logo {
+        width: 100%;
+        height: auto;
+        width: auto\9; /* ie8 */
+    }
+}
+    
+@media (min-width: 600px){
+    .logo {
+        width: 600px;
+        height: auto;
+        width: auto\9; /* ie8 */
+    }
+}

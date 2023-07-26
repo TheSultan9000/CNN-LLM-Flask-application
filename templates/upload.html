@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Cytetracker_upload{% endblock %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/upload.css') }}">{% endblock %}
+{% block content %}
+<!-- Upload form accepts images only -->
+<form id="form__upload" method="POST" enctype="multipart/form-data">
+    <input type="file" id="input__upload" name="image" accept="image/*">
+    <br><br><input type="submit" id="button__upload" value="Upload">
+    <p>The models:</p>
+    <p>CNN: has been trained on images of the English countryside and will output 'Animal', 'building', and 'Nature' (Precision: 1, Recall: 0.9, Accuracy: 0.6)</p>
+    <a href="https://huggingface.co/nlpconnect/vit-gpt2-image-captioning">
+        <p>LLM: https://huggingface.co/nlpconnect/vit-gpt2-image-captioning</p>
+    </a>
+</form>
+
+<div id="uploaded__content">
+    <h1>Uploaded Image:</h1>
+    <img id="uploaded__image">
+    <div id="loading__image">
+        <!-- HTML for loading roller taken from  https://loading.io/css/ -->
+        <!-- Display is set to flex only when Flask function is running -->
+        <div class="lds-roller">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <p id="result__tag"></p>
+    <p id="result__description"></p>
+</div>
+
+<!-- submit form -->
+<form method="POST" id="form__submit">
+    <p>Tags:</p>
+    <input id='input__tag' , placeholder="Tag, Tag">
+    <br><br>
+    <p>Description:</p>
+    <textarea rows="3" cols="30" id="input__description" placeholder="Description"></textarea>
+    <br><br>
+    <!-- As this is only a demonstration. Submit button activates the uplaod Flask function which does not retunr anything. info_extraction.js then refreshes the page. -->
+    <a href="{{ url_for('upload') }}">
+        <input type="submit" id="button__submit" value="Submit" title="Only the admin can submit an image">
+    </a>
+    <p>Message: This page is only for demonstration purposes. Only the admin can submit images!</p>
+</form>
+
+<script src="{{url_for ('static', filename='styles/info_extraction.js')}}"></script>
+<script src="{{url_for ('static', filename='styles/image_uploader.js')}}"></script>
+{% endblock %}

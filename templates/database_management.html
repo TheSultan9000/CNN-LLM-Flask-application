@@ -1,0 +1,24 @@
+<!-- /* Database information for admin */ -->
+{% extends "base.html" %}
+{% block title %}Cytetracker_database{% endblock %}
+{% block content %}
+<h2>Select image ID to delete:</h2>
+<h5>Image description below each button</h5>
+
+<br><br>
+
+<div class="database__container">
+    <div class="database__content">
+        <!-- Used to loop through a list of paths, discriptions, tags, and ids genereted within the Flask framework from an SQLight database-->
+        {% for photo in photos %}
+        <form method="POST" id="form__delete">
+            <!-- The value is set to the id of the image so that when the button value is passed to the Flask framewor, the correct images is deleted -->
+            <input type="submit" class="button__delete" value="{{photo[3]}}">
+            <p>{{photo[0]}}, {{photo[2]}}, {{photo[1]}} </p>
+        </form>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="{{url_for ('static', filename='styles/delete_button.js')}}"></script>
+{% endblock %}

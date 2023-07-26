@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Cytetracker{% endblock %}
+{% block styles %}<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/index.css') }}">{% endblock %}
+{% block content %}
+    <!-- Filter buttons for future app iteration -->
+    <!-- <div id="filter_button_container">
+        <button class="filter_button">All</button>
+        <button class="filter_button">Animals</button>
+        <button class="filter_button">Buildings</button>
+        <button class="filter_button">Nature</button>
+    </div> -->
+
+<div class="portfolio">
+    <!-- Used to loop through a list of paths, discriptions, tags, and ids genereted within the Flask framework from an SQLight database-->
+    {% for photo in photos %}
+        <div class="portfolio__item">
+            <!-- #Photo_{{ loop.index }} used to link image to the corresponding portfolio-lightbox__content-->
+            <a href="#Photo_{{ loop.index }}" class="portfolio__button">
+                <!-- photo[0] contains the URL to the image which has been stored within the static folder-->
+                <img src="{{ url_for('static', filename=photo[0]) }}" alt="Photo">
+            </a>
+        </div>
+    {% endfor %}  
+</div>
+
+<!-- The portfolio lightboxes -->
+<div class="portfolio-lightboxes">
+    <!-- Used to loop through a list of URLs, discriptions, and tags genereted within the Flask framework from an SQLight database-->
+    {% for photo in photos %}
+        <!-- Photo_{{ loop.index }} set as id allowing successful re-diretion from the portfolio__item-->
+        <div class="portfolio-lightbox" id="Photo_{{ loop.index }}">
+            <div class="portfolio-lightbox__content">
+                <!-- Close button-->
+                <a href="#!" class="close"></a>
+                <!-- photo[0] contains the URL to the image which has been stored within the static folder-->
+                <img src="{{ url_for('static', filename=photo[0]) }}" alt="Photo">
+                <!-- photo[2] contains the description-->
+                <h5 class="portfolio-lightbox__title">{{photo[2]}}</h5>
+                <!-- photo[1] contains the tags-->
+                <p class="portfolio-lightbox__tag">Tags: {{photo[1]}}</p>
+                <!-- photo[3] contains the database image ID. This is included for identification of each image within the database -->
+                <p style="font-size: 10px">ID: {{photo[3]}}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+ 
+{% endblock %}
